@@ -80,6 +80,12 @@ DATABASES = {
     }
 }
 
+# For Heorku.
+# See https://devcenter.heroku.com/articles/django-app-configuration
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+if db_from_env:
+    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
