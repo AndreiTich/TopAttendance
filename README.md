@@ -7,9 +7,14 @@
 1. Install the python requirements via `pip3 install -r requirements.txt`
 
 ## Learning resources
+### Python / Django
+* [Python 3 reference](https://docs.python.org/3/reference/)
 * [Django tutorial](https://docs.djangoproject.com/en/1.10/intro/tutorial01/)
 * [An unofficial Django tutorial](https://tutorial.djangogirls.org/en/index.html) which may be helpful as well
 * [Django reference material](https://docs.djangoproject.com/en/1.10/) (Really good documentation if you dig into it!)
+* [A collection of Django resources](https://www.fullstackpython.com/django.html)
+
+### React
 * [How to use state in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 * [How to make new components in React](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#importing-a-component)
 * [React router](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/quick-start.md)
