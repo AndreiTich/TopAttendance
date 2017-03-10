@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 
 import Button from './components/Button'
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {code: ''};
+  }
+
+    onClick = () => {
+        console.log('button!')
+        this.setState({code: '1234'})
+    }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Intro to Computer Science</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-details">
+            <p className="App-intro">Attendance Code</p>
+            <p className="App-code">{this.state.code}</p>
+        </div>
         <Button
             title="Test"
-            onClick={() => console.log('look a button!')}/>
+            onClick={this.onClick}/>
       </div>
     );
   }
