@@ -18,3 +18,12 @@
 * [How to use state in React](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 * [How to make new components in React](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#importing-a-component)
 * [React router](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/quick-start.md)
+
+## Ideas
+Misc. ideas that have been brought up.
+
+* Correlate geoip (Django has a great geoip/GIS feature) with the user-reported GPS lat/long to double check that they agree, to make sure they're not cheating the GPS location.
+* Add attendance "sessions": allow the prof to start/stop the attendance window.
+* iBeacon transmission from prof to student devices
+
+Feel free to experiment!
