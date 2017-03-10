@@ -52,12 +52,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'attendance.urls'
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+STATICFILES_DIRS = [os.path.join(SETTINGS_PATH, 'static')]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(SETTINGS_PATH, 'attendance', 'templates')],
+         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
