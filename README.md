@@ -25,5 +25,7 @@ Misc. ideas that have been brought up.
 * Correlate geoip (Django has a great geoip/GIS feature) with the user-reported GPS lat/long to double check that they agree, to make sure they're not cheating the GPS location.
 * Add attendance "sessions": allow the prof to start/stop the attendance window.
 * iBeacon transmission from prof to student devices
+* Something with having the students taking a photo of themselves so that the prof can go check if a student looks like they're in-class, if they have some reason to be suspicious
+* Consider other sensor data that might be interesting from mobile devices
 
 Feel free to experiment!
