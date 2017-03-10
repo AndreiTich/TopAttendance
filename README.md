@@ -12,6 +12,7 @@
 * [Django tutorial](https://docs.djangoproject.com/en/1.10/intro/tutorial01/)
 * [An unofficial Django tutorial](https://tutorial.djangogirls.org/en/index.html) which may be helpful as well
 * [Django reference material](https://docs.djangoproject.com/en/1.10/) (Really good documentation if you dig into it!)
+* [Django DB migrations](https://docs.djangoproject.com/en/1.10/topics/migrations/)
 * [A collection of Django resources](https://www.fullstackpython.com/django.html)
 
 ### React
