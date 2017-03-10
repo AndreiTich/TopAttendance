@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 
 import Button from './components/Button'
 import './App.css';
+import axios from 'axios';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {code: ''};
+    this.state = {code: '   '};
   }
 
-    onClick = () => {
-        console.log('button!')
-        this.setState({code: '1234'})
-    }
+  onButtonClick = () => {
+   console.log('Button clicked!');
+   axios.get('/prof/attendance-code/')
+     .then((response) => {
+       this.setState({code: response.data.code})
+       console.log(response);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+  }
 
   render() {
     return (
@@ -26,10 +35,11 @@ class App extends Component {
         </div>
         <Button
             title="Test"
-            onClick={this.onClick}/>
+            onClick={this.onButtonClick}/>
       </div>
     );
   }
+
 }
 
 export default App;
