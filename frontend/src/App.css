@@ -19,6 +19,9 @@
     height: 140px;
 }
 
+.App-Button {
+  padding: 15px;
+}
 .App-intro {
   font-size: large;
 }

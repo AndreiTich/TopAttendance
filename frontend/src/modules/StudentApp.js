@@ -89,7 +89,7 @@ class StudentApp extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar brand='Introduction to Computer Science' left className="light-blue lighten-1">
+        <Navbar brand='Introduction to Computer Science' className="light-blue lighten-1">
         </Navbar>
         <div className="App-details">
           <Row>

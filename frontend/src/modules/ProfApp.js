@@ -51,13 +51,13 @@ getLocation = () => {
   render() {
     return (
       <div className="App">
-      <Navbar brand='Introduction to Computer Science' left className="light-blue lighten-1">
+      <Navbar brand='Introduction to Computer Science' className="light-blue lighten-1">
       </Navbar>
         <div className="App-details">
             <p className="App-intro">Attendance Code</p>
             <p className="App-code">{this.state.code}</p>
         </div>
-        <div>
+        <div className="App-Button">
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
       </div>
