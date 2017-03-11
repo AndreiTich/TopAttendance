@@ -90,8 +90,8 @@ class StudentApp extends Component {
   render() {
     return (
       <div className="App">
-        <div className='light-blue lighten-1 center'>
-            Introduction to Computer Science
+        <div className='card-panel blue lighten-2 center flow-text'>
+            <h3>Introduction to Computer Science</h3>
         </div>
         <div className="App-details">
           <Col>

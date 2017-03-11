@@ -47,7 +47,7 @@ getLocation = () => {
   }
 
   timer = () => {
-    axios.get('/prof/students', {
+    axios.get('/prof/students/', {
       params: {
         code: this.state.code
       }
@@ -71,8 +71,9 @@ getLocation = () => {
   render() {
     return (
       <div className="App">
-      <Navbar brand='Introduction to Computer Science' className="light-blue lighten-1">
-      </Navbar>
+     <div className='card-panel purple lighten-2 center flow-text'>
+            <h3>Introduction to Computer Science</h3>
+        </div>
         <div className="App-details">
             <p className="App-intro">Attendance Code</p>
             <p className="App-code">{this.state.code}</p>
