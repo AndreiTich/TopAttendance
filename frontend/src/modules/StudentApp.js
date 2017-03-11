@@ -28,7 +28,8 @@ class StudentApp extends Component {
      student_id: this.state.student_id,
      code: this.state.code,
      latitude: position.coords.latitude,
-     longitude: position.coords.longitude
+     longitude: position.coords.longitude,
+     accuracy: position.coords.accuracy
     })
    .then((response) => {
         this.setState({
@@ -92,14 +93,17 @@ class StudentApp extends Component {
         <Navbar brand='Introduction to Computer Science' left className="light-blue lighten-1">
         </Navbar>
         <div className="App-details">
-          <Row>
+          <Col>
               <Input s={6} label="Student ID" onChange={this.handleStudentId}/>
               <Input s={6} label="Code" onChange={this.handleCode}/>
-          </Row>
+          </Col>
           <Col s={6} center>
             <Button waves='light' onClick={this.onButtonClick}>Submit</Button>
           </Col>
         </div>
+        <br></br>
+        <br></br>
+        <br></br>
         {this.renderStatus()}
       </div>
     );
