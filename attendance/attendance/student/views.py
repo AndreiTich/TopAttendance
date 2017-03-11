@@ -32,6 +32,7 @@ def attendance_code(request):
 
     if distance(prof_latitude, prof_longitude, latitude, longitude) > 100:
         return HttpResponseBadRequest("You might be in a wrong classroom.") 
+
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
     s.save()
 
@@ -40,7 +41,8 @@ def attendance_code(request):
 
 #in meters
 def distance(prof_latitude, prof_longitude, student_latitude, student_longitude):
-    p = 0.017453292519943295
-    a = 0.5 - cos((student_latitude - prof_latitude) * p)/2 + cos(prof_latitude * p) * cos(student_latitude * p) * (1 - cos((student_longitude - prof_longitude) * p)) / 2
-    return float(12742 * asin(sqrt(a))) * 1000
+    degToRadFactor = 0.017453292519943295
+    haversineDistance = 0.5 - cos((student_latitude - prof_latitude) * p)/2 + cos(prof_latitude * p) * cos(student_latitude * p) * (1 - cos((student_longitude - prof_longitude) * p)) / 2
+    diameterEarth = 12742
+    return float(diameterEarth * asin(sqrt(a)) * 1000)
 
