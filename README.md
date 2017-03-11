@@ -21,7 +21,7 @@
 * [React router](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/quick-start.md)
 
 ### CSS
-* (Materalize) http://materializecss.com/dialogs.html
+* [Materalize](http://materializecss.com/dialogs.html)
 
 ## Ideas
 Misc. ideas that have been brought up.
