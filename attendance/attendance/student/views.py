@@ -44,7 +44,7 @@ def attendance_code(request):
     prof_city = str(ProfAttendance.objects.get(class_code=code).city)
 
     if distance(prof_latitude, prof_longitude, latitude, longitude) > 50 and ( student_city == prof_city or student_city == '' ):
-        return HttpResponseBadRequest("You might be in a wrong classroom and/or city.") 
+        return HttpResponseBadRequest("You might be in a wrong classroom.") 
 
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
     s.save()
