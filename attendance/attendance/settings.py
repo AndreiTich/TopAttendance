@@ -25,7 +25,7 @@ SECRET_KEY = 'nagss!oj2wk(9-h!!*b3(34d8qsg)_gn$mxc-!6hr2*$9u9zjn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['top-attendance.herokuapp.com']
+ALLOWED_HOSTS = ['top-attendance.herokuapp.com', 'localhost', '127.0.0.1']
 
 SHELL_PLUS = 'bpython'
 
