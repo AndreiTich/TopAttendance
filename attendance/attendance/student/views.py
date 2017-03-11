@@ -26,12 +26,14 @@ def attendance_code(request):
         return HttpResponseBadRequest("Code must be 4 digits!") 
     if not ProfAttendance.objects.filter(class_code=code).exists():
         return HttpResponseBadRequest("Class code does not exist!") 
+        
     #need to add validation for geo location here
-    prof_latitude = float(ProfAttendance.objects.get(class_code=code).latitude)
-    prof_longitude = float(ProfAttendance.objects.get(class_code=code).longitude)
+    prof_latitude = float(ProfAttendance.objects.get(id=1).latitude)
+    prof_longitude = float(ProfAttendance.objects.get(id=1).longitude)
 
     if distance(prof_latitude, prof_longitude, latitude, longitude) > 100:
         return HttpResponseBadRequest("You might be in a wrong classroom.") 
+
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
     s.save()
 
@@ -40,7 +42,7 @@ def attendance_code(request):
 
 #in meters
 def distance(prof_latitude, prof_longitude, student_latitude, student_longitude):
-    p = 0.017453292519943295
-    a = 0.5 - cos((student_latitude - prof_latitude) * p)/2 + cos(prof_latitude * p) * cos(student_latitude * p) * (1 - cos((student_longitude - prof_longitude) * p)) / 2
-    return float(12742 * asin(sqrt(a))) * 1000
-
+    degToRadFactor = 0.017453292519943295
+    haversineDistance = 0.5 - cos((student_latitude - prof_latitude) * degToRadFactor)/2 + cos(prof_latitude * degToRadFactor) * cos(student_latitude * degToRadFactor) * (1 - cos((student_longitude - prof_longitude) * degToRadFactor)) / 2
+    diameterEarth = 12742
+    return float(diameterEarth * asin(sqrt(haversineDistance)) * 1000)
