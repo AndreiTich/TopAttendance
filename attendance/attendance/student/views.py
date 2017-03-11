@@ -14,6 +14,8 @@ def attendance_code(request):
     try:
         student_id = json_data['student_id']
         code = json_data['code']
+        latitude = json_data['latitude']
+        longitude = json_data['longitude']
     except KeyError:
         return HttpResponseBadRequest()
 
@@ -23,11 +25,12 @@ def attendance_code(request):
         return HttpResponseBadRequest("Code must be 4 digits!") 
     if not ProfAttendance.objects.filter(class_code=code).exists():
         return HttpResponseBadRequest("ClassCode does not exist!") 
+    #need to add validation for geo location here
 
-    s = Attendance(student_id=student_id, code=code)
+    s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
     s.save()
 
-    return HttpResponse("student_id: {}, code: {}".format(student_id, code))
+    return HttpResponse("student_id: {}, code: {}, latitude: {}, longitude: {}".format(student_id, code, latitude, longitude))
 
 
 
