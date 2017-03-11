@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.15.3",
+    "materialize-css": "^0.98.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-materialize": "^0.18.1",
+    "react-router-dom": "^4.0.0-beta.6"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
