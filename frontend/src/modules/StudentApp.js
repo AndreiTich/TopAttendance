@@ -14,27 +14,41 @@ class StudentApp extends Component {
     };
   }
 
+  getLocation = () => {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.updateLocation);
+      }
+  }
+
+  updateLocation = (position) => {
+    console.log(position)
+    this.setState({
+        position: position
+    })
+
+    axios.post('/student/attendance-code/', {
+     student_id: this.state.student_id,
+     code: this.state.code,
+     latitude: position.coords.latitude,
+     longitude: position.coords.longitude
+    })
+    .then((response) => {
+         console.log(response)
+         this.setState({
+             status: response.status
+         })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   onButtonClick = () => {
    console.log('Button clicked!');
-   axios.post('/student/attendance-code/', {
-    student_id: this.state.student_id,
-    code: this.state.code,
-    latitude: '00',
-    longitude: '00'
-   })
-   .then((response) => {
-        console.log(response)
-        this.setState({
-            status: response.status
-        })
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
+   this.getLocation();
   }
 
   handleStudentId = (e) => {
-    console.log(e.target.value);
      this.setState({student_id: e.target.value});
   }
 

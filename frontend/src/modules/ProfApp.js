@@ -26,18 +26,26 @@ getLocation = () => {
     this.setState({
         position: position
     })
+
+    axios.post('/prof/attendance-code/', {
+     latitude: position.coords.latitude,
+     longitude: position.coords.longitude
+    })
+    .then((response) => {
+         console.log(response)
+         this.setState({
+             status: response.status,
+             code: response.data.code
+         })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   onButtonClick = () => {
-   console.log('Button clicked!');
-   axios.get('/prof/attendance-code/')
-     .then((response) => {
-       this.setState({code: response.data.code})
-       console.log(response);
-     })
-     .catch(function (error) {
-       console.log(error);
-     });
+   console.log('Sending location and getting code!');
+   this.getLocation();
   }
 
   render() {
@@ -52,10 +60,6 @@ getLocation = () => {
         <div>
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
-        <div>
-          <Button waves='light' onClick={this.getLocation} center>Get Location</Button>
-        </div>
-        {this.getPositionDisplay()}
       </div>
     );
   }
