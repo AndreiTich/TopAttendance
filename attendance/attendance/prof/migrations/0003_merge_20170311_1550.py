@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('prof', '0002_auto_20170311_1541'),
-        ('prof', '0002_auto_20170311_0037'),
     ]
 
     operations = [
