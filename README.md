@@ -6,6 +6,9 @@
 1. Activate the virtual environment (on Mac/Linux: `source .virtualenv/bin/activate`; on Windows: `./.virtualenv/Scripts/activate.bat`)
 1. Install the python requirements via `pip3 install -r requirements.txt`
 
+## Deployment
+1. Ask Alex :p
+
 ## Learning resources
 ### Python / Django
 * [Python 3 reference](https://docs.python.org/3/reference/)
