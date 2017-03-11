@@ -10,37 +10,39 @@ class StudentApp extends Component {
     super(props);
     this.state = {
         code: '',
-        status: null
+        description: '',
+        pullingLocation: false,
+        status: null,
     };
   }
 
   getLocation = () => {
       if (navigator.geolocation) {
+          this.setState({pullingLocation: true})
           navigator.geolocation.getCurrentPosition(this.updateLocation);
       }
   }
 
   updateLocation = (position) => {
-    console.log(position)
-    this.setState({
-        position: position
-    })
-
     axios.post('/student/attendance-code/', {
      student_id: this.state.student_id,
      code: this.state.code,
      latitude: position.coords.latitude,
      longitude: position.coords.longitude
     })
-    .then((response) => {
-         console.log(response)
-         this.setState({
-             status: response.status
-         })
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+   .then((response) => {
+        this.setState({
+            pullingLocation: false,
+            status: response.status
+        })
+   })
+   .catch((error) => {
+     this.setState({
+        description: error.response.data,
+        pullingLocation: false,
+        status: error.response.status
+     })
+   });
   }
 
   onButtonClick = () => {
@@ -58,6 +60,13 @@ class StudentApp extends Component {
 
   renderStatus = () => {
     const status = this.state.status
+    if (this.state.pullingLocation) {
+        return (
+            <div>
+                Waiting for location...
+            </div>
+        )
+    }
     if (!status) {
         return null
     }
@@ -66,6 +75,12 @@ class StudentApp extends Component {
         return (
             <div>
                 Your attendance has been accepted
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                {this.state.description}
             </div>
         )
     }

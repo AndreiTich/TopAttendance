@@ -26,6 +26,8 @@ def attendance_code(request):
         return HttpResponseBadRequest("Code must be 4 digits!") 
     if not ProfAttendance.objects.filter(class_code=code).exists():
         return HttpResponseBadRequest("Class code does not exist!") 
+    if Attendance.objects.get(student_id=student_id).exists():
+        return HttpResponseBadRequest("Attendance already submitted")
         
     #need to add validation for geo location here
     prof_latitude = float(ProfAttendance.objects.get(class_code=code).latitude)
