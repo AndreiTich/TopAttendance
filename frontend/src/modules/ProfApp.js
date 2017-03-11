@@ -12,20 +12,22 @@ class ProfApp extends Component {
     this.state = {
         code: '',
         position: null,
-        num_students: 0
+        num_students: 0,
+        pullingLocation: false
     };
   }
 
 getLocation = () => {
     if (navigator.geolocation) {
+        this.setState({pullingLocation: true})
         navigator.geolocation.getCurrentPosition(this.updateLocation);
     }
 }
 
   updateLocation = (position) => {
-    console.log(position)
     this.setState({
-        position: position
+        position: position,
+        pullingLocation: false
     })
 
     axios.post('/prof/attendance-code/', {
@@ -34,7 +36,6 @@ getLocation = () => {
      accuracy: position.coords.accuracy
     })
     .then((response) => {
-         console.log(response)
          this.setState({
              status: response.status,
              code: response.data.code
@@ -52,7 +53,6 @@ getLocation = () => {
       }
     })
     .then((response) => {
-         console.log(response)
          this.setState({
              status: response.status,
              num_students: response.data.num_of_students
@@ -64,7 +64,6 @@ getLocation = () => {
   }
 
   onButtonClick = () => {
-   console.log('Sending location and getting code!');
    this.getLocation();
    var intervalId = setInterval(this.timer, 1000);
   }
@@ -82,6 +81,7 @@ getLocation = () => {
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
         <br></br>
+        {this.getLocationWarning()}
         {this.getNumStudentsDisplay()}
       </div>
 
@@ -92,6 +92,17 @@ getLocation = () => {
     return (
         <div>
             Students attending class: {this.state.num_students}
+        </div>
+    )
+  }
+
+  getLocationWarning = () => {
+    if (!this.state.pullingLocation) {
+        return null
+    }
+    return (
+        <div className="card-panel yellow flow-text">
+           <h3> Waiting for location... </h3>
         </div>
     )
   }
