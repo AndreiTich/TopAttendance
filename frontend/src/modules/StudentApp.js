@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Button, Row, Col, Icon, Input, Navbar } from 'react-materialize';
 
-import Button from '../components/Button'
 import '../App.css';
+import '../index.css';
 import axios from 'axios';
 
 
@@ -13,32 +14,33 @@ class StudentApp extends Component {
 
   onButtonClick = () => {
    console.log('Button clicked!');
-   axios.get('/prof/attendance-code/')
-     .then((response) => {
-       this.setState({code: response.data.code})
-       console.log(response);
-     })
-     .catch(function (error) {
-       console.log(error);
-     });
+   axios.post('/student/attendance-code/', {
+    student_id: '12345678',
+    code: '0000',
+    latitude: '00',
+    longitude: '00'
+   })
+   .then((response) => {
+     console.log(response);
+   })
+   .catch(function (error) {
+     console.log(error);
+   });
   }
 
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Intro to Computer Science</h2>
-        </div>
+        <Navbar brand='Introduction to Computer Science' left className="light-blue lighten-1">
+        </Navbar>
         <div className="App-details">
-
-        <form action="/student/attendance-code">
-          StudentID:<br/>
-          <input type="text" name="student_id" value="12345678"/><br/>
-          Code:<br/>
-          <input type="text" name="code" value="0000"/><br/><br/>
-          <input type="submit" value="Submit"/>
-        </form>
-
+          <Row>
+              <Input s={6} label="Student ID" />
+              <Input s={6} label="Code" />
+          </Row>
+          <Col s={6} center>
+            <Button waves='light' onClick={this.onButtonClick}>Submit</Button>
+          </Col>
         </div>
       </div>
     );
