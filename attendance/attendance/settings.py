@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nagss!oj2wk(9-h!!*b3(34d8qsg)_gn$mxc-!6hr2*$9u9zjn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', ''))
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', '1'))
 
 ALLOWED_HOSTS = ['top-attendance.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -58,6 +58,8 @@ ROOT_URLCONF = 'attendance.urls'
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 STATICFILES_DIRS = [os.path.join(SETTINGS_PATH, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
 
 TEMPLATES = [
     {
