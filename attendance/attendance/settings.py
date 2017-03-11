@@ -58,6 +58,8 @@ ROOT_URLCONF = 'attendance.urls'
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 STATICFILES_DIRS = [os.path.join(SETTINGS_PATH, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WHITENOISE_USE_FINDERS = True
+WHITENOISE_AUTOREFRESH = True
 
 TEMPLATES = [
     {
