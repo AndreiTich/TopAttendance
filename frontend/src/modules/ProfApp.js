@@ -29,7 +29,8 @@ getLocation = () => {
 
     axios.post('/prof/attendance-code/', {
      latitude: position.coords.latitude,
-     longitude: position.coords.longitude
+     longitude: position.coords.longitude,
+     accuracy: position.coords.accuracy
     })
     .then((response) => {
          console.log(response)
@@ -60,7 +61,9 @@ getLocation = () => {
         <div className="App-Button">
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
+
       </div>
+
     );
   }
 
