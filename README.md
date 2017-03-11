@@ -20,6 +20,9 @@
 * [How to make new components in React](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#importing-a-component)
 * [React router](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/quick-start.md)
 
+### CSS
+* (Materalize) http://materializecss.com/dialogs.html
+
 ## Ideas
 Misc. ideas that have been brought up.
 
