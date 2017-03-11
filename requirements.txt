@@ -4,3 +4,4 @@ gunicorn
 psycopg2
 django-extensions
 bpython
+whitenoise
