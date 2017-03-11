@@ -60,6 +60,7 @@ STATICFILES_DIRS = [os.path.join(SETTINGS_PATH, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = True
+GEOIP_PATH = os.path.join(BASE_DIR, 'GeoLite2-City.mmdb')
 
 TEMPLATES = [
     {

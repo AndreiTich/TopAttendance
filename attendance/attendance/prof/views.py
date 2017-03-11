@@ -17,9 +17,12 @@ def index(request):
   
     code = random.randrange(0,9999)
     codestr = str(code).zfill(4)
-    profIP = get_client_ip(request)
-    g = GeoIP2()
-    cityData = g.city(profIP)
+    try:
+        profIP = get_client_ip(request)
+        g = GeoIP2()
+        cityData = g.city(profIP)
+    except:
+        cityData = {'city':''}
 
     obj = Attendance.objects.create(class_code=codestr)
 

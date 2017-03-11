@@ -14,9 +14,13 @@ from math import cos, asin, sqrt
 def attendance_code(request):
     json_data = json.loads(str(request.body,"utf-8"))
     requestIP = get_client_ip(request)
-    g = GeoIP2()
-    cityData = g.city(requestIP)
-    student_city = cityData['city']
+    try:
+        g = GeoIP2()
+        cityData = g.city(requestIP)
+        student_city = cityData['city']
+    except: 
+        student_city = ''
+
     try:
         student_id = json_data['student_id']
         code = json_data['code']
@@ -39,7 +43,7 @@ def attendance_code(request):
     prof_longitude = float(ProfAttendance.objects.get(class_code=code).longitude)
     prof_city = str(ProfAttendance.objects.get(class_code=code).city)
 
-    if distance(prof_latitude, prof_longitude, latitude, longitude) > 50 and student_city == prof_city:
+    if distance(prof_latitude, prof_longitude, latitude, longitude) > 50 and ( student_city == prof_city or student_city == '' ):
         return HttpResponseBadRequest("You might be in a wrong classroom and/or city.") 
 
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
