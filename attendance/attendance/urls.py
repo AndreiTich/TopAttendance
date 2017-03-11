@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^prof/',include('attendance.prof.urls')),
     url(r'^student/', include('attendance.student.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
+    url(r'^prof[/]$', views.index, name='index'),
+    url(r'^student[/]$', views.index, name='index'),
 ]

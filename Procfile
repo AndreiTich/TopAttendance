@@ -1,2 +1,2 @@
-web: gunicorn attendance.attendance.wsgi --log-file -
-heroku ps:scale web=1
+release: cd attendance && python manage.py migrate && cd ../frontend && deploy_frontend.sh
+web: sh ./attendance/run_for_heroku.sh

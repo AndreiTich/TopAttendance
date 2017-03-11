@@ -10,11 +10,6 @@ import StudentApp from './modules/StudentApp'
 const BasicExample = () => (
   <Router>
     <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/student">Student</Link></li>
-        <li><Link to="/prof">Prof</Link></li>
-      </ul>
 
       <hr/>
 
