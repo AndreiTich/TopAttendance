@@ -8,7 +8,10 @@ import axios from 'axios';
 class StudentApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {code: '   '};
+    this.state = {
+        code: '',
+        status: null
+    };
   }
 
   onButtonClick = () => {
@@ -20,7 +23,10 @@ class StudentApp extends Component {
     longitude: '00'
    })
    .then((response) => {
-     console.log(response);
+        console.log(response)
+        this.setState({
+            status: response.status
+        })
    })
    .catch(function (error) {
      console.log(error);
@@ -34,6 +40,21 @@ class StudentApp extends Component {
 
   handleCode = (e) => {
      this.setState({code: e.target.value});
+  }
+
+  renderStatus = () => {
+    const status = this.state.status
+    if (!status) {
+        return null
+    }
+
+    if (status == 200) {
+        return (
+            <div>
+                Your attendance has been accepted
+            </div>
+        )
+    }
   }
 
   render() {
@@ -50,6 +71,7 @@ class StudentApp extends Component {
             <Button waves='light' onClick={this.onButtonClick}>Submit</Button>
           </Col>
         </div>
+        {this.renderStatus()}
       </div>
     );
   }
