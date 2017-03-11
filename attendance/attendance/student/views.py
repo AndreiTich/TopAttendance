@@ -33,8 +33,8 @@ def attendance_code(request):
     prof_latitude = float(ProfAttendance.objects.get(class_code=code).latitude)
     prof_longitude = float(ProfAttendance.objects.get(class_code=code).longitude)
 
-    if distance(prof_latitude, prof_longitude, latitude, longitude) > 100:
-        return HttpResponseBadRequest("You might be in a wrong classroom.") 
+    if distance(prof_latitude, prof_longitude, latitude, longitude) > 50:
+        return HttpResponseBadRequest("You might be in a wrong classroom.")
 
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
     s.save()
