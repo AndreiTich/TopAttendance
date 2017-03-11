@@ -22,6 +22,12 @@
 .App-Button {
   padding: 15px;
 }
+
+.App-status {
+  padding: 20px;
+  font-size: xx-large;
+}
+
 .App-intro {
   font-size: large;
 }

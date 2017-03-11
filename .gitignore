@@ -11,3 +11,4 @@ pyvenv.cfg
 pip-selfcheck.json
 *.pyc
 attendance/db.sqlite3
+virtualenv
