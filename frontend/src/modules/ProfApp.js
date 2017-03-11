@@ -9,7 +9,23 @@ import { Button, Row, Col, Icon, Input, Navbar, NavItem } from 'react-materializ
 class ProfApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {code: '   '};
+    this.state = {
+        code: '',
+        position: null
+    };
+  }
+
+getLocation = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.updateLocation);
+    }
+}
+
+  updateLocation = (position) => {
+    console.log(position)
+    this.setState({
+        position: position
+    })
   }
 
   onButtonClick = () => {
@@ -36,8 +52,24 @@ class ProfApp extends Component {
         <div>
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
+        <div>
+          <Button waves='light' onClick={this.getLocation} center>Get Location</Button>
+        </div>
+        {this.getPositionDisplay()}
       </div>
     );
+  }
+
+  getPositionDisplay() {
+    const position = this.state.position
+    if (!position) {
+        return null
+    }
+    return (
+        <div>
+            lat: {position.coords.latitude} lon: {position.coords.longitude}
+        </div>
+    )
   }
 
 }
