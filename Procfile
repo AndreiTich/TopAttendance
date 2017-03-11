@@ -1,2 +1,1 @@
-web: gunicorn --pythonpath attendance attendance.wsgi --log-file -
-heroku ps:scale web=1
+web: sh ./attendance/run_for_heroku.sh
