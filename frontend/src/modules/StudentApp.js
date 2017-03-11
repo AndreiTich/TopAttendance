@@ -10,12 +10,12 @@ class StudentApp extends Component {
     super(props);
     this.state = {
         code: '',
-        status: null
+        description: '',
+        status: null,
     };
   }
 
   onButtonClick = () => {
-   console.log('Button clicked!');
    axios.post('/student/attendance-code/', {
     student_id: this.state.student_id,
     code: this.state.code,
@@ -23,18 +23,19 @@ class StudentApp extends Component {
     longitude: '00'
    })
    .then((response) => {
-        console.log(response)
         this.setState({
             status: response.status
         })
    })
-   .catch(function (error) {
-     console.log(error);
+   .catch((error) => {
+     this.setState({
+        description: error.response.data,
+        status: error.response.status
+     })
    });
   }
 
   handleStudentId = (e) => {
-    console.log(e.target.value);
      this.setState({student_id: e.target.value});
   }
 
@@ -52,6 +53,12 @@ class StudentApp extends Component {
         return (
             <div>
                 Your attendance has been accepted
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                {this.state.description}
             </div>
         )
     }
