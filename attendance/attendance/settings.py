@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['top-attendance.herokuapp.com']
 
+SHELL_PLUS = 'bpython'
 
 # Application definition
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'attendance.prof',
     'attendance.student',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

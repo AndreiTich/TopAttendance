@@ -2,3 +2,5 @@ django
 dj-database-url
 gunicorn
 psycopg2
+django-extensions
+bpython
