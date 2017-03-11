@@ -24,9 +24,9 @@ def attendance_code(request):
         return HttpResponseBadRequest("Student id must be numbers only!")
     if len(code) != 4:
         return HttpResponseBadRequest("Code must be 4 digits!") 
-    if not ProfAttendance.objects.filter(class_code=code).exists():
-        return HttpResponseBadRequest("Class code does not exist!") 
-    if Attendance.objects.get(student_id=student_id).exists():
+    if not ProfAttendance.objects.last().class_code == code:
+        return HttpResponseBadRequest("Incorrect class code!") 
+    if Attendance.objects.filter(student_id=student_id, class_code=code).exists():
         return HttpResponseBadRequest("Attendance already submitted")
         
     #need to add validation for geo location here
