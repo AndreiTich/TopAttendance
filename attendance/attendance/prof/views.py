@@ -34,5 +34,3 @@ def index(request):
     
     returndict = {"code" : codestr, "latitude":str(obj.latitude), "longitude":str(obj.longitude)}
     return HttpResponse(json.dumps(returndict), content_type="application/json")
-
-# Create your views here.
