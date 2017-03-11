@@ -5,7 +5,6 @@ import '../App.css';
 import '../index.css';
 import axios from 'axios';
 
-
 class StudentApp extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +14,8 @@ class StudentApp extends Component {
   onButtonClick = () => {
    console.log('Button clicked!');
    axios.post('/student/attendance-code/', {
-    student_id: '12345678',
-    code: '0000',
+    student_id: this.state.student_id,
+    code: this.state.code,
     latitude: '00',
     longitude: '00'
    })
@@ -28,6 +27,15 @@ class StudentApp extends Component {
    });
   }
 
+  handleStudentId = (e) => {
+    console.log(e.target.value);
+     this.setState({student_id: e.target.value});
+  }
+
+  handleCode = (e) => {
+     this.setState({code: e.target.value});
+  }
+
   render() {
     return (
       <div className="App">
@@ -35,8 +43,8 @@ class StudentApp extends Component {
         </Navbar>
         <div className="App-details">
           <Row>
-              <Input s={6} label="Student ID" />
-              <Input s={6} label="Code" />
+              <Input s={6} label="Student ID" onChange={this.handleStudentId}/>
+              <Input s={6} label="Code" onChange={this.handleCode}/>
           </Row>
           <Col s={6} center>
             <Button waves='light' onClick={this.onButtonClick}>Submit</Button>
