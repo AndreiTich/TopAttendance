@@ -1,3 +1,4 @@
+set -e
 npm install
 rm -r ../attendance/static/
 mkdir ../attendance/static
