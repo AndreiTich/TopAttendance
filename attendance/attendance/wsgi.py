@@ -11,8 +11,6 @@ import os, sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "attendance.attendance.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "attendance.settings")
 
 application = get_wsgi_application()
