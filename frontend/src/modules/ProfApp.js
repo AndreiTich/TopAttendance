@@ -12,7 +12,7 @@ class ProfApp extends Component {
     this.state = {
         code: '',
         position: null,
-        num_students: '1'
+        num_students: 0
     };
   }
 
