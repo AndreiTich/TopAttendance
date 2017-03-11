@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import '../App.css';
+import '../index.css';
 import axios from 'axios';
 import { Button, Row, Col, Icon, Input, Navbar, NavItem } from 'react-materialize';
 

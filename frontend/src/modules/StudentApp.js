@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Row, Col, Icon, Input, Navbar } from 'react-materialize';
 
 import '../App.css';
+import '../index.css';
 import axios from 'axios';
 
 
