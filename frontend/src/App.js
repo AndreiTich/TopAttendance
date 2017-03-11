@@ -1,45 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import ProfApp from './modules/ProfApp'
+import StudentApp from './modules/StudentApp'
 
-import Button from './components/Button'
-import './App.css';
-import axios from 'axios';
+const BasicExample = () => (
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/student">Student</Link></li>
+        <li><Link to="/prof">Prof</Link></li>
+      </ul>
+
+      <hr/>
+
+      <Route exact path="/" component={Home}/>
+      <Route path="/student" component={StudentApp}/>
+      <Route path="/prof" component={ProfApp}/>
+    </div>
+  </Router>
+)
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+)
+
+const Student = () => (
+  <div>
+    <h2>Student</h2>
+  </div>
+)
+const Prof = () => (
+  <div>
+    <h2>Prof</h2>
+  </div>
+)
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {code: '   '};
-  }
-
-  onButtonClick = () => {
-   console.log('Button clicked!');
-   axios.get('/prof/attendance-code/')
-     .then((response) => {
-       this.setState({code: response.data.code})
-       console.log(response);
-     })
-     .catch(function (error) {
-       console.log(error);
-     });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Intro to Computer Science</h2>
-        </div>
-        <div className="App-details">
-            <p className="App-intro">Attendance Code</p>
-            <p className="App-code">{this.state.code}</p>
-        </div>
-        <Button
-            title="Test"
-            onClick={this.onButtonClick}/>
-      </div>
-    );
-  }
-
-}
-
-export default App;
+export default BasicExample
