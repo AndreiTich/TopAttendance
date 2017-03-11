@@ -47,7 +47,7 @@ getLocation = () => {
   }
 
   timer = () => {
-    axios.get('/prof/students', {
+    axios.get('/prof/students/', {
       params: {
         code: this.state.code
       }
