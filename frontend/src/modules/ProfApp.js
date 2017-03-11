@@ -11,7 +11,8 @@ class ProfApp extends Component {
     super(props);
     this.state = {
         code: '',
-        position: null
+        position: null,
+        num_students: '1'
     };
   }
 
@@ -44,9 +45,28 @@ getLocation = () => {
     });
   }
 
+  timer = () => {
+    axios.get('/prof/students', {
+      params: {
+        code: this.state.code
+      }
+    })
+    .then((response) => {
+         console.log(response)
+         this.setState({
+             status: response.status,
+             num_students: response.data.num_of_students
+         })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   onButtonClick = () => {
    console.log('Sending location and getting code!');
    this.getLocation();
+   var intervalId = setInterval(this.timer, 1000);
   }
 
   render() {
@@ -61,10 +81,19 @@ getLocation = () => {
         <div>
           <Button waves='light' onClick={this.onButtonClick} center>Get Code</Button>
         </div>
-
+        <br></br>
+        {this.getNumStudentsDisplay()}
       </div>
 
     );
+  }
+
+  getNumStudentsDisplay() {
+    return (
+        <div>
+            Students attending class: {this.state.num_students}
+        </div>
+    )
   }
 
   getPositionDisplay() {
