@@ -10,7 +10,7 @@ from attendance.prof.models import Attendance as ProfAttendance
 @require_POST
 @csrf_exempt
 def attendance_code(request):
-    json_data = json.loads(request.body)
+    json_data = json.loads(str(request.body,"utf-8"))
     try:
         student_id = json_data['student_id']
         code = json_data['code']
@@ -24,7 +24,7 @@ def attendance_code(request):
     if len(code) != 4:
         return HttpResponseBadRequest("Code must be 4 digits!") 
     if not ProfAttendance.objects.filter(class_code=code).exists():
-        return HttpResponseBadRequest("ClassCode does not exist!") 
+        return HttpResponseBadRequest("Class code does not exist!") 
     #need to add validation for geo location here
 
     s = Attendance(student_id=student_id, code=code, latitude=latitude, longitude=longitude)
