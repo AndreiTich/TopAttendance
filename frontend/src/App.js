@@ -10,9 +10,6 @@ import StudentApp from './modules/StudentApp'
 const BasicExample = () => (
   <Router>
     <div>
-
-      <hr/>
-
       <Route exact path="/" component={Home}/>
       <Route path="/student" component={StudentApp}/>
       <Route path="/prof" component={ProfApp}/>

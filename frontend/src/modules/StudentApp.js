@@ -63,8 +63,8 @@ class StudentApp extends Component {
     const status = this.state.status
     if (this.state.pullingLocation) {
         return (
-            <div>
-                Waiting for location...
+            <div className="card-panel yellow flow-text">
+               <h3> Waiting for location... </h3>
             </div>
         )
     }
@@ -74,14 +74,14 @@ class StudentApp extends Component {
 
     if (status == 200) {
         return (
-            <div>
-                Your attendance has been accepted
+            <div className="card-panel green flow-text">
+               <h3> Your attendance has been accepted </h3>
             </div>
         )
     } else {
         return (
-            <div>
-                {this.state.description}
+            <div className="card-panel red flow-text">
+               <h3> {this.state.description} </h3>
             </div>
         )
     }
@@ -90,8 +90,9 @@ class StudentApp extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar brand='Introduction to Computer Science' left className="light-blue lighten-1">
-        </Navbar>
+        <div className='light-blue lighten-1 center'>
+            Introduction to Computer Science
+        </div>
         <div className="App-details">
           <Col>
               <Input s={6} label="Student ID" onChange={this.handleStudentId}/>
