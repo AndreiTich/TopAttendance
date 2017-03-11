@@ -41,5 +41,6 @@ def students(request):
     code = request.GET.get('code','')
     if code=='':
         return HttpResponseBadRequest("Missing code data")
-    return HttpResponse(json.dumps(StudentAttendance.objects.filter(code=code).count()),content_type="application/json")
+    ret_json={"num_of_students": StudentAttendance.objects.filter(code=code).count() }
+    return HttpResponse(json.dumps(ret_json),content_type="application/json")
 
