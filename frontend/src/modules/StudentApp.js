@@ -35,7 +35,7 @@ class StudentApp extends Component {
         </Navbar>
         <div className="App-details">
           <Row>
-              <Input placeholder="Placeholder" s={6} label="Student ID" />
+              <Input s={6} label="Student ID" />
               <Input s={6} label="Code" />
           </Row>
           <Col s={6} center>
