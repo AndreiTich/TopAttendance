@@ -28,8 +28,8 @@ def attendance_code(request):
         return HttpResponseBadRequest("Class code does not exist!") 
         
     #need to add validation for geo location here
-    prof_latitude = float(ProfAttendance.objects.get(id=1).latitude)
-    prof_longitude = float(ProfAttendance.objects.get(id=1).longitude)
+    prof_latitude = float(ProfAttendance.objects.get(class_code=code).latitude)
+    prof_longitude = float(ProfAttendance.objects.get(class_code=code).longitude)
 
     if distance(prof_latitude, prof_longitude, latitude, longitude) > 100:
         return HttpResponseBadRequest("You might be in a wrong classroom.") 

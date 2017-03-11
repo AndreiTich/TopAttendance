@@ -15,13 +15,24 @@ class StudentApp extends Component {
     };
   }
 
-  onButtonClick = () => {
-   axios.post('/student/attendance-code/', {
-    student_id: this.state.student_id,
-    code: this.state.code,
-    latitude: '00',
-    longitude: '00'
-   })
+  getLocation = () => {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.updateLocation);
+      }
+  }
+
+  updateLocation = (position) => {
+    console.log(position)
+    this.setState({
+        position: position
+    })
+
+    axios.post('/student/attendance-code/', {
+     student_id: this.state.student_id,
+     code: this.state.code,
+     latitude: position.coords.latitude,
+     longitude: position.coords.longitude
+    })
    .then((response) => {
         this.setState({
             status: response.status
@@ -33,6 +44,11 @@ class StudentApp extends Component {
         status: error.response.status
      })
    });
+  }
+
+  onButtonClick = () => {
+   console.log('Button clicked!');
+   this.getLocation();
   }
 
   handleStudentId = (e) => {
