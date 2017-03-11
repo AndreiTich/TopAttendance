@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseBadRequest
 from attendance.prof.models import Attendance
 from attendance.student.models import Attendance as StudentAttendance
+from django.contrib.gis.geoip2 import GeoIP2
 from django.views.decorators.http import require_POST
 from django.views.decorators.http import require_GET
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +17,9 @@ def index(request):
   
     code = random.randrange(0,9999)
     codestr = str(code).zfill(4)
+    profIP = get_client_ip(request)
+    g = GeoIP2()
+    cityData = g.city(profIP)
 
     obj = Attendance.objects.create(class_code=codestr)
 
@@ -24,6 +28,7 @@ def index(request):
     try:
         obj.latitude = json_data['latitude']
         obj.longitude = json_data['longitude']
+        obj.city = cityData['city']
 
     except KeyError:
         return HttpResponseBadRequest("Missing location data")  
@@ -44,3 +49,10 @@ def students(request):
     ret_json={"num_of_students": StudentAttendance.objects.filter(code=code).count() }
     return HttpResponse(json.dumps(ret_json),content_type="application/json")
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
